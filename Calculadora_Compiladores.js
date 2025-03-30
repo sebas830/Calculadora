@@ -17,7 +17,35 @@ while (rep) {
         num_One = parseFloat(readlineSync.question("Por favor digite el número 1: "));
         num_Two = parseFloat(readlineSync.question("Por favor digite el número 2: "));
     }
-
     
-
+    switch (opc) {
+        case 1:
+            total = num_One + num_Two;
+            break;
+        case 2:
+            total = num_One - num_Two;
+            break;
+        case 3:
+            total = num_One * num_Two;
+            break;
+        case 4:
+            if (num_Two !== 0) {
+                total = num_One / num_Two;
+            } else {
+                console.log("\nError: No se puede dividir por cero\n");
+                continue;
+            }
+            break;
+        case 5:
+            rep = false;
+            console.log("Saliendo del programa...");
+            continue;
+        default:
+            console.log("La opción que digitó no se encuentra en el sistema");
+            continue;
+    }
+    
+    if (opc !== 5 && opc >= 1 && opc <= 4) {
+        console.log("La respuesta es: " + total);
+    }
 }
