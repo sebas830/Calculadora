@@ -95,9 +95,8 @@ function mostrarResultados(tokens, tablaSimbolos) {
     console.log("\nTabla de Símbolos:");
     imprimirTabla(["Nombre", "Tipo", "Token", "Lineas"], datosTablaSimbolos);
 }
-
-const codigoEjemplo = `
-int x = 10;
+// por favor pegar el codigo al lado de `, ya que esa es la linea 1 del programa
+const codigoEjemplo = `int x = 10;
 float y = 5.5;
 string mensaje = "Hola";
 if (x > y) {
