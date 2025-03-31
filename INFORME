@@ -1,0 +1,21 @@
+Profesor Jorge Leonardo, buen dia/tarde/noche.
+Le presentamos el Trabajo No. 3 de la materia de Compiladores.
+
+Integrantes:
+Maria Alejandra Reina – CC. 1.114.308.798
+Sebastian Ramirez Parra – CC. 1.117.012.905
+
+En este proyecto, hemos implementado dos clases en JavaScript. Inicialmente, fueron desarrolladas en Java, pero decidimos trasladarlas a 
+JavaScript, ya que es un lenguaje que nunca habiamos utilizado. Por esta razon, es posible que haya algunas malas practicas. 
+Estamos abiertos a cualquier recomendacion que nos pueda brindar.
+
+Instrucciones para ejecutar el codigo:
+1. Instale Node.js en su equipo.
+2. Verifique que la instalacion fue exitosa.
+3. Instale los modulos necesarios ejecutando el siguiente comando en la terminal:
+    npm install readline-sync
+4. Para ejecutar el codigo, abra la carpeta del proyecto en la terminal y ejecute:
+    node Calculadora_Compiladores.js
+    node ejercicio.js
+
+Agradecemos su atencion y quedamos atentos a sus comentarios.
