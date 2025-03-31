@@ -8,31 +8,49 @@ function analizarCodigo(codigo) {
     let listaTokens = [];
     let tablaSimbolos = {};
     let numeroLinea = 1;
+    let tipoActual = null;
+
+
+    let posicionActual = 0;
 
     for (let coincidencia of coincidencias) {
         let token = coincidencia[0];
         let tipoToken;
 
+        let antesDelToken = codigo.substring(posicionActual, coincidencia.index);
+        numeroLinea += (antesDelToken.match(/\n/g) || []).length;
+        posicionActual = coincidencia.index + token.length;
+
         if (palabrasReservadas.has(token)) {
             tipoToken = 'PALABRA_RESERVADA';
+            if (token === "int" || token === "float") {
+                tipoActual = token; 
+            }
         } else if (operadores.has(token)) {
             tipoToken = 'OPERADOR';
+            tipoActual = null; 
         } else if (delimitadores.has(token)) {
             tipoToken = 'DELIMITADOR';
+            tipoActual = null; 
         } else if (/".*?"/.test(token)) {
             tipoToken = 'CADENA';
-        } else if (/\d+\.\d+/.test(token) || /\d+/.test(token)) {
-            tipoToken = 'NÚMERO';
+        } else if (/\d+\.\d+/.test(token)) {
+            tipoToken = 'NÚMERO_DECIMAL';
+        } else if (/\d+/.test(token)) {
+            tipoToken = 'NÚMERO_ENTERO';
         } else {
             tipoToken = 'IDENTIFICADOR';
             if (!tablaSimbolos[token]) {
-                tablaSimbolos[token] = { Tipo: 'Desconocido', Token: 'Variable', Lineas: [] };
+                tablaSimbolos[token] = { Tipo: tipoActual || 'Desconocido', Token: 'Variable', Lineas: [] };
             }
             tablaSimbolos[token].Lineas.push(numeroLinea);
+            if (tipoActual) {
+                tablaSimbolos[token].Tipo = tipoActual;
+                tipoActual = null; 
+            }
         }
 
         listaTokens.push({ token, tipoToken, numeroLinea });
-        numeroLinea += (token.match(/\n/g) || []).length;
     }
 
     return { listaTokens, tablaSimbolos };
@@ -77,8 +95,8 @@ function mostrarResultados(tokens, tablaSimbolos) {
     imprimirTabla(["Nombre", "Tipo", "Token", "Lineas"], datosTablaSimbolos);
 }
 
-const codigoEjemplo = `
-int x = 10;
+//Por favor a la hora de colocar el codigo, colocarlo especificamente al lado del `
+const codigoEjemplo = `int x = 10;
 float y = 20.5;
 if (x < y) {
     return "x es menor";
