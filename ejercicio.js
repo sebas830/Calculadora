@@ -1,4 +1,4 @@
-const palabrasReservadas = new Set(["int", "float", "if", "while", "return"]);
+const palabrasReservadas = new Set(["int", "float", "if", "while", "return", "string", "void"]);
 const operadores = new Set(["+", "-", "*", "/", "=", ">", "<", "=="]);
 const delimitadores = new Set([";", "{", "}", "(", ")"]);
 
@@ -9,7 +9,6 @@ function analizarCodigo(codigo) {
     let tablaSimbolos = {};
     let numeroLinea = 1;
     let tipoActual = null;
-
 
     let posicionActual = 0;
 
@@ -23,8 +22,10 @@ function analizarCodigo(codigo) {
 
         if (palabrasReservadas.has(token)) {
             tipoToken = 'PALABRA_RESERVADA';
-            if (token === "int" || token === "float") {
+            if (token === "int" || token === "float" || token === "string") {
                 tipoActual = token; 
+            } else if (token === "void") {
+                tipoActual = "void";  // Asignación para void
             }
         } else if (operadores.has(token)) {
             tipoToken = 'OPERADOR';
@@ -95,57 +96,15 @@ function mostrarResultados(tokens, tablaSimbolos) {
     imprimirTabla(["Nombre", "Tipo", "Token", "Lineas"], datosTablaSimbolos);
 }
 
-//Por favor a la hora de digitar el codigo, colocarlo especificamente al lado del `, esto es para que empiece desde la linea 1 el codigo
-const codigoEjemplo = `const readlineSync = require('readline-sync');
-
-let rep = true;
-
-while (rep) {
-    console.log("Por favor digite una de las opciones:");
-    console.log("1. Sumar");
-    console.log("2. Restar");
-    console.log("3. Multiplicar");
-    console.log("4. Dividir");
-    console.log("5. Salir");
-    
-    let opc = parseInt(readlineSync.question("Ingrese su opción: "));
-    let num_One, num_Two, total;
-    
-    if (opc !== 5 && opc >= 1 && opc <= 4) {
-        num_One = parseFloat(readlineSync.question("Por favor digite el número 1: "));
-        num_Two = parseFloat(readlineSync.question("Por favor digite el número 2: "));
-    }
-    
-    switch (opc) {
-        case 1:
-            total = num_One + num_Two;
-            break;
-        case 2:
-            total = num_One - num_Two;
-            break;
-        case 3:
-            total = num_One * num_Two;
-            break;
-        case 4:
-            if (num_Two !== 0) {
-                total = num_One / num_Two;
-            } else {
-                console.log("\nError: No se puede dividir por cero\n");
-                continue;
-            }
-            break;
-        case 5:
-            rep = false;
-            console.log("Saliendo del programa...");
-            continue;
-        default:
-            console.log("La opción que digitó no se encuentra en el sistema");
-            continue;
-    }
-    
-    if (opc !== 5 && opc >= 1 && opc <= 4) {
-        console.log("La respuesta es: " + total);
-    }
+const codigoEjemplo = `
+int x = 10;
+float y = 5.5;
+string mensaje = "Hola";
+if (x > y) {
+x = x + 1;
+}
+void imprimir() {
+return;
 }
 `;
 

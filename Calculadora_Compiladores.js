@@ -14,8 +14,8 @@ while (rep) {
     let num_One, num_Two, total;
     
     if (opc !== 5 && opc >= 1 && opc <= 4) {
-        num_One = parseFloat(readlineSync.question("Por favor digite el número 1: "));
-        num_Two = parseFloat(readlineSync.question("Por favor digite el número 2: "));
+        num_One = 24
+        num_Two = 12
     }
     
     switch (opc) {
