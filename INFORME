@@ -18,4 +18,8 @@ Instrucciones para ejecutar el codigo:
     node Calculadora_Compiladores.js
     node ejercicio.js
 
+El proyecto calculadora se hizo para probar el codigo, mas no me toma todos los tipos de palabra reservada ya que no he anexado los nombres en los arrays y mas comparaciones en el if, 
+
+El proyectro funciona correctamente en el ejercicio de ejemplo que suministro la actividad.
+
 Agradecemos su atencion y quedamos atentos a sus comentarios.
